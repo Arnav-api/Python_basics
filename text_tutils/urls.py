@@ -26,5 +26,6 @@ urlpatterns = [
     path("Django_learn",views.Django_learn,name='Django_learn'),
     path("Machine_Learning",views.Machine_Learning,name='Machine_Learning'),
     path("Functionality",views.Functionality,name='Functionality'),
-    path("Transform_Sentences",views.Transform_Sentences,name='Transform_Sentences')
+    path("Transform_Sentences",views.Transform_Sentences,name='Transform_Sentences'),
+    path("remove_punctuations",views.remove_punctuations,name='remove_punctuations')
 ]

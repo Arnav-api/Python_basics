@@ -20,10 +20,30 @@ def Functionality(Request):
 
 def Transform_Sentences(Request):
     b=Request.GET.get('text','default')
-    pattern = 'name is ([a-zA-z ]*) ' 
-    _name_=re.findall(pattern,b)
-    pattern2='from ([a-zA-z ]*) city'
-    _city_=re.findall(pattern2,b)
-    pattern3='student in ([a-zA-Z ]*)'
-    _study_=re.findall(pattern3,b)
-    return HttpResponse(f"Following can be extracted about the user:<br>{_name_}<br>{_city_}<br>{_study_}")
+    option=Request.GET.get('User Details','off')
+    if option == 'on':
+        pattern = 'name is ([a-zA-z ]*) ' 
+        _name_=re.findall(pattern,b)
+        pattern2='from ([a-zA-z ]*) city'
+        _city_=re.findall(pattern2,b)
+        pattern3='student in ([a-zA-Z ]*)'
+        _study_=re.findall(pattern3,b)
+        return HttpResponse(f"Following can be extracted about the user:<br>{_name_}<br>{_city_}<br>{_study_}")
+    else:
+        return HttpResponse("Error")
+def remove_punctuations(Request):
+    a= Request.GET.get('removepunc','off')
+    c= Request.GET.get('text','No Input')
+    if a =='on':
+        punctuations= '''.,!#"':;?/'''
+        edited_text=""
+        for i in c:
+            if i not in punctuations:
+                edited_text=edited_text+i
+                
+        params={'purpose':a,'action':edited_text}
+        return render(Request,'analyze.html',params)
+    else:
+        return HttpResponse("Error")
+
+    
